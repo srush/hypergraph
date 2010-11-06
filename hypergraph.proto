@@ -1,0 +1,24 @@
+package hypergraph;
+
+message Hypergraph {
+  required int32 root = 1; 
+  repeated Node nodes = 2;
+
+  message Node {
+    required int id = 1;
+    optional string label = 2;
+    repeated Edge edges = 3;
+    extensions 100 to 199;
+  }
+  
+  message Edge {    
+    required int id = 1; 
+    optional string label = 2;
+    repeated Node tail_nodes = 3;
+    extensions 100 to 199;
+  }
+
+  extensions 100 to 199;
+}
+
+

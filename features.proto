@@ -1,0 +1,19 @@
+package hypergraph;
+
+message FeatureVector {
+
+  message FeaturePair{
+    string feature = 1;
+    float value = 2
+  }
+
+  repeated FeaturePair features;
+}
+
+extension Hypergraph.Node {
+  optional FeatureVector fv = 100;
+}
+
+extension Hypergraph.Edge {
+  optional FeatureVector fv = 100;
+}
