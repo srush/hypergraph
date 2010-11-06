@@ -10,7 +10,7 @@
     
 import sys, os
 sys.path.append("../gen_py/")
-
+import json
 from protobuf_json import pb2json
 
 from hypergraph_pb2 import *
@@ -102,4 +102,4 @@ def load(handle):
 if __name__ == "__main__":
     for f in load(sys.stdin):
         print f
-        print pb2json(f)
+        print json.dumps(pb2json(f), indent=2)
