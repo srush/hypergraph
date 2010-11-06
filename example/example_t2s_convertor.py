@@ -11,18 +11,11 @@
 import sys, os
 sys.path.append("../gen_py/")
 
+from protobuf_json import pb2json
+
 from hypergraph_pb2 import *
 from features_pb2 import *
 from translation_pb2 import *
-
-
-#def load_vector(vec_str):
-#      vec_map = {}
-#      for f in vec_str.split():
-#        (feat, val_str) = f.split('=')
-#        vec_map[feat] = float(val_str)
-#      return vec_map
-
 
 
 def load(handle):            
@@ -76,11 +69,6 @@ def load(handle):
                 node.id = int(iden)
                 node.label = labelspan
 
-                #fvector = load_vector(fields)
-                #for feat, val in fvector.iteritems():
-                #  fpair = node.Extensions[node_fv].values.add()
-                # fpair.value = val
-                #  fpair.feature = feat
                 fpair = node.Extensions[node_fv] =fields.decode("UTF-8")
             
                 for j in xrange(size):
@@ -100,17 +88,10 @@ def load(handle):
                         else: 
                             tailnodes.append(int(x))
 
-                    #fvector = Vector(fields)
                     for t in tailnodes:
                         edge.tail_node_ids.append(t)
                     edge.label = rule.decode('UTF-8')
                                
-                    #fvector = load_vector(fields)
-                    #for feat, val in fvector.iteritems():
-                    #    fpair = edge.Extensions[edge_fv].values.add()
-                    #    fpair.value = val
-                    #    fpair.feature = feat
-
                     edge.Extensions[edge_fv] =fields
 
             forest.root = node.id
@@ -119,5 +100,6 @@ def load(handle):
 
 
 if __name__ == "__main__":
-  for f in load(sys.stdin):
-    print f
+    for f in load(sys.stdin):
+        print f
+        print pb2json(f)
