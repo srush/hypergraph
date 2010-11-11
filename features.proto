@@ -1,6 +1,6 @@
 import "hypergraph.proto";
 
-package hypergraph;
+
 
 /*message FeatureVector {
   message FeaturePair {
