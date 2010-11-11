@@ -8,9 +8,8 @@ message Hypergraph {
   }
   
   message Edge {    
-    required int32 id = 1; 
-    optional string label = 2;
-    repeated int32 tail_node_ids = 3;
+    optional string label = 1;
+    repeated int32 tail_node_ids = 2;
     extensions 100 to 199;
   }
   extensions 1 to 4;
